@@ -24,8 +24,8 @@ def load_from_file():
         for line in file:
             list.append(line.rstrip('\n'))
         main()
-    except IOError:
-        pass
+    finally:
+        file.close()
 
 
 if __name__ == '__main__':
