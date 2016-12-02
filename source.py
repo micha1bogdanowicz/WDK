@@ -1,21 +1,33 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/python
 
 import linecache
+import binascii
+list = []
 
-try:
-    text = open('ciph.txt')
-    list = []
-    list_el = ''
+def xor_strings(bin_a, bin_b):
+    return "".join(chr(ord(x) ^ ord(y)) for x, y in zip(bin_a, bin_b))
+
+def main():
+    x = list[1].decode('hex')
+    b = list[2].decode('hex')
+    a=xor_strings(x,b)
+    print a.encode('hex')
+    crib=raw_input("Crib: ").decode('CP852')
+    crib=crib.encode('utf-8')
+    s= xor_strings(a,crib)
+    print s.decode('utf-8')
+
+def load_from_file():
     try:
-        for i in range(0,12):
-            cipher = linecache.getline('ciph.txt',i)
-            list_el = cipher
-            list.append(list_el)
-        for l in list:
-            print l
-    finally:
+        file = open('ciph.txt','r')
+        for line in file:
+            list.append(line.rstrip('\n'))
+        main()
+    except IOError:
+        pass
 
-        text.close()
 
-except IOError:
+if __name__ == '__main__':
+    load_from_file()
     pass
