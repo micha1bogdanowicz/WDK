@@ -10,24 +10,34 @@ def xor_strings(bin_a, bin_b):
 
 def main():
     a=[]
+    crib_ciph=raw_input("W ktorym ciagu znajduje sie szukana fraza? (0-11) ")
+    crib_ciph =  int(crib_ciph)
     for element in list:
-        x = list[0].decode('hex')
+        x = list[crib_ciph].decode('hex')
         b = element.decode('hex')
         a.append(xor_strings(x,b))
-    a.pop(0)
+    #a.pop(0)
 
     crib=raw_input("Crib: ").decode('CP852')
     crib=crib.encode('utf-8')
+    i=0
     for element in a:
-        s= xor_strings(element,crib)
-        print s.decode('utf-8')
+        if(len(crib)<len(element)):
+            s= xor_strings(element,crib)
+            print str(i).encode("utf-8")+' '+ s.decode('utf-8','ignore')
+        else:
+            print str(i) +' '+ "####KONIEC CIPHER_TXT####"
+        i = i + 1
 
 def load_from_file():
     try:
         file = open('ciph.txt','r')
         for line in file:
             list.append(line.rstrip('\n'))
-        main()
+        ext=' '
+        while(ext!='exit()'):
+            main()
+            ext = raw_input("exit() - to close, anything to continue")
     finally:
         file.close()
 
