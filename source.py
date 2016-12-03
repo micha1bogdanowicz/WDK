@@ -26,8 +26,15 @@ def main():
             s= xor_strings(element,crib)
             print str(i).encode("utf-8")+' '+ s.decode('utf-8','ignore')
         else:
-            print str(i) +' '+ "####KONIEC CIPHER_TXT####"
+            try:
+                s = xor_strings(element, crib)
+                print str(i) +' '+ s.decode('utf-8','ignore') + ' ####'
+
+            finally:
+                "####KONIEC CIPHER_TXT####"
         i = i + 1
+
+
 
 def load_from_file():
     try:
@@ -37,7 +44,7 @@ def load_from_file():
         ext=' '
         while(ext!='exit()'):
             main()
-            ext = raw_input("exit() - to close, anything to continue")
+            ext = raw_input("'exit()' - to close, anything to continue: ")
     finally:
         file.close()
 
