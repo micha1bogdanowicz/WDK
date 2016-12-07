@@ -23,6 +23,15 @@ Opis:
 5. https://zaufanatrzeciastrona.pl/post/jak-czechoslowacki-kontrwywiad-wegierskich-szpiegow-za-nos-wodzil/
 
 Dodatkowa informacja:
+    Gdyby jednak to nie był artykuł opublikowany w internecie i całość nie byłaby ogólnie dostępna, problem
+    pojawiłby się przy najdłuższej wiadomości, ponieważ nie jesteśmy w stanie pozbyć się z niej klucza za pomocą
+    operacji XOR.
     W powyższym przypadku udało się trafić pierwsze słowo jednego z cipher_text'ów, gdyby jednak tak się nie stało,
     trzeba by zastosować metodę pełnego przeglądu tj. (Crib ^ xored_two_cipher_texts[i,len(Crib)+i]).
+    Przy nieudanych próbach często wyrzuca nasz skrypt, w lini 23 należy użyć: """print repr(something)"""
+    Co prawda kodowanie polskich znaków zmieniło się w: \u0142 , \u0107 ... ale zostały dzięki temu wydrukowane
+    nieprawidłowo odgadnięte wyrazy: \u03fbrqc&i+;7 , zofe\u07ae`k(?|.58, oraz program nie wyrzucił wyjątku.
+    Można uzyć również : print str(i)+' '+ s.decode('utf-8',errors='ignore').encode("utf-8")
+    Bardziej czytelne niż pierwsze rozwiązanie. (Problem do rozwiązania, but how?)
+
 
