@@ -15,7 +15,7 @@ class Engine():
         dlg = 16
         secret_key = magic(dlg)
         print "Utworzono %d bajtowy klucz: %s \nWykonano kopie do pliku secret.keyz "%(dlg,binascii.hexlify(secret_key))
-        secret_key_txt = open('secret.keyz', 'w')
+        secret_key_txt = open('secret.keyz', 'wb')
         secret_key_txt.write(secret_key)
         secret_key_txt.close()
         Engine.cls()
