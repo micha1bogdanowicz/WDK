@@ -8,7 +8,6 @@ from Crypto.Cipher import AES
 class Engine():
     secret_key = None
 
-
     def cls(self):
         print "\n" + "#" * 50 + "\n"
     def CreateSecretKey(self):
@@ -41,7 +40,6 @@ class Engine():
         obj = AES.new(secret_key,AES.MODE_ECB)
         msg = obj.decrypt(ciph)
         return Padding.removePadding(msg, mode='CMS')
-
 
 if __name__ == "__main__":
     Engine = Engine()
