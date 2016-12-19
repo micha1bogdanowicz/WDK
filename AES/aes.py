@@ -21,6 +21,16 @@ class Engine():
         Engine.cls()
         return secret_key
 
+    def CreateIV(self):
+        dlg=16
+        iv = magic(dlg)
+        print "Utworzono %d bajtowy wektor inicjujacy: %s \nWykonano kopie do pliku secret.iv " %(dlg, binascii.hexlify(iv))
+        secret_iv_txt = open('secret.iv', 'wb')
+        secret_iv_txt.write(iv)
+        secret_iv_txt.close()
+        Engine.cls()
+        return iv
+
     def WhichAESMethodUse(self):
         print "##################Welcome in CryptoWATer##################"
         print "Write '0' to use Electronic Code Book  ECB (passwd-based)."
@@ -49,7 +59,19 @@ if __name__ == "__main__":
     secret_key = Engine.CreateSecretKey()
 
     if(cipher_method == 0):
+        print "#Encrypt ECB mode"
         ciph = Engine.EncryptECB(secret_key,AES.MODE_ECB)
+    if(cipher_method == 1):
+        iv = Engine.CreateIV()
+        print "#Encrypt CBC mode"
+        ciph = Engine.Encrypt(secret_key, AES.MODE_CBC,iv)
+        pass
+    if(cipher_method == 2):
+        iv = Engine.CreateIV()
+        print "#Encrypt CTR mode"
+        ciph = Engine.Encrypt(secret_key, AES.MODE_CTR, iv)
+        pass
+
     Engine.cls()
     print binascii.hexlify(ciph)
     Engine.cls()

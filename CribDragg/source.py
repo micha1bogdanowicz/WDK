@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/python
 
+__author__ = "Michał Bogdanowicz"
+
 list = []
 
 def xor_strings(bin_a, bin_b):
@@ -15,12 +17,13 @@ def main():
         b = element.decode('hex')
         a.append(xor_strings(x,b))
 
+
     crib=raw_input("Crib: ").decode('CP852')
     crib=crib.encode('utf-8')
     i=0
     for element in a:
             s= xor_strings(element,crib)
-            print str(i)+' '+ s.decode('utf-8',errors='ignore').encode("utf-8")
+            print str(i) + ' ' + s.decode('utf-8', errors='ignore').encode("utf-8")
             i = i + 1
 
 def load_from_file():
