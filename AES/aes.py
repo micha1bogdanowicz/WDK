@@ -1,4 +1,9 @@
 #!/usr/bin/python
+# By tylko rozszyfrowac wiadomosc, podstaw klucz oraz iv do odpowiednich plikow.
+# Gdy program spyta sie ktorego klucza/iv uzyc, uzyj tego z ostatniej sesji.
+# W Engine.main() w instrukcjach warunkowych IF dodaj '#' na poczatku linijki ciph i pierwszego printa
+# dodatkowo dopisz linijke ciph=unhexlify("hexstring")
+# przyklad w IF(1)
 
 import Padding
 from binascii import unhexlify
@@ -109,6 +114,7 @@ class Engine():
         else:
             obj = AES.new(secret_key,mode,iv)
         msg = obj.decrypt(ciph)
+        #Przypadku roszyfrowywania CTR przy bledzie paddingu dodaj '#' w lini ponizej
         msg = Padding.removePadding(msg, mode='CMS')
         return msg
 
@@ -117,6 +123,9 @@ class Engine():
         key = Engine.WhichKeyUse()
         if(rodzaj == 1):
             #ECB nie uzywa iv wiec jego wartosc moze byc domyslna
+            # add #ciph = Engine.Encrypt(key, AES.MODE_ECB, iv="0000000000000001")
+            # add #print "Twoja zaszyfrowana (ECB) wiadomosc: " + hexlify(ciph)
+            # add ciph = unhexlify("mojatajnawiadomosc")
             ciph=Engine.Encrypt(key,AES.MODE_ECB,iv="0000000000000001")
             print "Twoja zaszyfrowana (ECB) wiadomosc: " + hexlify(ciph)
             msg=Engine.Decrypt(ciph,key,AES.MODE_ECB,iv="0000000000000001")
@@ -128,20 +137,14 @@ class Engine():
             msg=Engine.Decrypt(ciph,key,AES.MODE_CBC,iv)
             print "Sprawdzenie poprawnosci: " + msg
         if(rodzaj == 3):
+            #Counter generowany na podstawie iv
             iv = Engine.WhichIvUse()
-            ciph=Engine.Encrypt(key,AES.MODE_CTR,iv)
-            print "Twoja zaszyfrowana (CTR) wiadomosc: " + hexlify(ciph)
+            #ciph=Engine.Encrypt(key,AES.MODE_CTR,iv)
+            #print "Twoja zaszyfrowana (CTR) wiadomosc: " + hexlify(ciph)
+            ciph = unhexlify("f14379765c8e8433c782e04e1176acabe8a6cde21a7d8b59c62d92d3ea8eefa5594ac43ba123bf9f9bf49196c002c36432794430a77ebdc3fdbe0cf407b7556323ed640b1dfa37460a1de265941b0b8844438b5690cd3b74e8795fe1248339839780cb5b4f0ee3c878e402864c00de050b39a748bf0fbf9e1669fcb2716827523c70fecb1e5d84fa69698e47d28c81c912cc54d962462476ad0a218fc044d469ebee304a5e51490bee8c581da7861ffc18f347d13b28000971837066113815acd529fc9ea74f4d4732288e4ab2a9b51504891461f6e1c752fab2f224bfdec7b377d3f4b3a2d0f507760cfc2c9cc4d6019fb7086837297480405b79f954637ccfb6daa4")
             msg = Engine.Decrypt(ciph, key, AES.MODE_CTR, iv)
             print "Sprawdzenie poprawnosci: " + msg
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     Engine = Engine()
     Engine.main()
-
