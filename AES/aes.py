@@ -122,70 +122,55 @@ class Engine():
             if(rodzaj == 1):
                 #ECB nie uzywa iv wiec jego wartosc moze byc domyslna
                 ciph=Engine.Encrypt(key,AES.MODE_ECB,iv="0000000000000001")
-                print "Twoja zaszyfrowana (ECB) wiadomosc: " + hexlify(ciph)
                 msg=Engine.Decrypt(ciph,key,AES.MODE_ECB,iv="0000000000000001")
-                print "Sprawdzenie poprawnosci: " + msg
             if(rodzaj == 2):
                 iv = Engine.WhichIvUse()
                 ciph=Engine.Encrypt(key,AES.MODE_CBC,iv)
-                print "Twoja zaszyfrowana (CBC) wiadomosc: " + hexlify(ciph)
                 msg=Engine.Decrypt(ciph,key,AES.MODE_CBC,iv)
-                print "Sprawdzenie poprawnosci: " + msg
             if(rodzaj == 3):
                 #Counter generowany na podstawie iv
                 iv = Engine.WhichIvUse()
                 ciph=Engine.Encrypt(key,AES.MODE_CTR,iv)
-                print "Twoja zaszyfrowana (CTR) wiadomosc: " + hexlify(ciph)
                 msg = Engine.Decrypt(ciph, key, AES.MODE_CTR, iv)
-                print "Sprawdzenie poprawnosci: " + msg
+            print "Twoja zaszyfrowana wiadomosc: " + hexlify(ciph)
+            print "Sprawdzenie poprawnosci: " + msg
+
         if(EncryptDecrypt=='1'):
+            print "Load you key to file: 'secret.keyz'"
+            print "Load you ciphertext to file: 'cipher.txt'"
             if(rodzaj == 1):
-                print "Load you key to file: 'secret.keyz'"
-                print "Load you ciphertext to file: 'cipher.txt'"
                 raw_input("If it done, press 'enter'")
+                Engine.cls()
                 try:
-                    file = open('secret.keyz')
-                    key=unhexlify(file.read())
+                    key=unhexlify(Engine.ReadKeyFromFile())
                     filea = open('cipher.txt')
                     ciph =unhexlify(filea.read())
-
                 finally:
-                    file.close()
                     filea.close()
                     msg = Engine.Decrypt(ciph,key,AES.MODE_ECB,iv="0000000000000001")
             if (rodzaj == 2):
-                print "Load you key to file: 'secret.keyz'"
                 print "Load you iv to file: 'secret.iv'"
-                print "Load you ciphertext to file: 'cipher.txt'"
                 raw_input("If it done, press 'enter'")
+                Engine.cls()
                 try:
-                    file = open('secret.keyz')
-                    key = unhexlify(file.read())
+                    key = unhexlify(Engine.ReadKeyFromFile())
                     filea = open('cipher.txt')
                     ciph = unhexlify(filea.read())
-                    fileb = open('secret.iv')
-                    iv=unhexlify(fileb.read())
+                    iv = unhexlify(Engine.ReadIVFromFile())
                 finally:
-                    file.close()
                     filea.close()
-                    fileb.close()
                     msg = Engine.Decrypt(ciph, key, AES.MODE_CBC, iv)
             if (rodzaj == 3):
-                print "Load you key to file: 'secret.keyz'"
                 print "Load you iv to file: 'secret.iv'"
-                print "Load you ciphertext to file: 'cipher.txt'"
                 raw_input("If it done, press 'enter'")
+                Engine.cls()
                 try:
-                    file = open('secret.keyz')
-                    key = unhexlify(file.read())
+                    key = unhexlify(Engine.ReadKeyFromFile())
                     filea = open('cipher.txt')
                     ciph = unhexlify(filea.read())
-                    fileb = open('secret.iv')
-                    iv=unhexlify(fileb.read())
+                    iv=unhexlify(Engine.ReadIVFromFile())
                 finally:
-                    file.close()
                     filea.close()
-                    fileb.close()
                     msg = Engine.Decrypt(ciph, key, AES.MODE_CTR, iv)
             print "Decrypt msg: "+msg
 
