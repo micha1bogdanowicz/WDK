@@ -1,0 +1,36 @@
+Odszyfrowane ciphertext:
+1. Bit-Flipping jest popularnym atakiem na blokowe algorytmy szyfrowania w trybie CBC (ang. Cipher Block Chaining), wiązania bloków zaszyfrowanych. W wielu przypadkach prowadzi do przejęcia kont innych użytkowników (często administracyjnych), a w skrajnych przypadkach – nawet do zdalnego wykonywania kodu.
+2. Padding Oracle to atak pozwalający na wyłuskanie tekstu jawnego z zaszyfrowanych danych bez znajomości klucza szyfrującego, a także – bez konieczności wyszukiwania błędów w samym algorytmie szyfrującym.
+3. Prędzej czy później komputery kwantowe o możliwościach znacznie przewyższających tradycyjne maszyny obliczeniowe wejdą do powszechnego użytku. Będzie to moment, w którym cała gama stosowanych obecnie algorytmów szyfrowania straci swoje znaczenie.
+
+1.Zaszyfrowane ECB:
+key = 18be743b6370c81073fc78ce19856ca8
+msg = 9621c8785a129f02552033d0bb99ae86ef80e863d50f6be8daf3278485a7bf8820808801dedfa2a604901cf489e4d8c8a083b936c8e54724625c8e041b681d9c
+2.Zaszyfrowane CBC:
+key = 5a2c724cf0d67327083f0d5a7f006670
+iv = 1b5f450eb4db817ad5799c9dca5540f4
+msg = c9ab790466f360aa84396a0f4b13e413030a8b84b22f73b363ccb86ff599632d9c7a501430fa0e865aa14f58f6a8f214a9dacf49e223be191bd0e7e7fd5d32e2b482c61a3b5a09e5f720426df07f4cb10f7032f8c0459e3c426f3c056a639fa232e639f8dfd3bc909f7893a120d64a55221e6c01c578f93abf21bd41aa04f27e
+3.Zaszyfrowane CTR:
+key = f9fafc839ed7abad815969be627be79b
+iv = 5c21390f08ec53275aed709c5a0cf289
+msg = 9b93125bb1ab903b7f7afb5fc8c1787503d21501b8aae10d4d8de1cb2e55169a99625b8af26fa50bb368a2b87da386d51c73b7a536708dcf33c8f3362f85edd67d6b2bfec59110c16d0e1f738b2f2363efa0e89660101a5df0f4ccfbaafb931ea89e882b50eca5cc8769b39b2fc0d8db7612eeb35c552ad4f4ad80d0fa110dc48ff8af5a067b08997142e3f3998735c59dac4b375eca0f8bcc9151dda05303239215f31c00509264e7f14c26c7fe6e31ec720a5921893f3147fb7060de8523ba83821f86
+
+
+Odpowiedzi na pytania:
+1. http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38a.pdf
+   http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf
+   http://csrc.nist.gov/groups/ST/toolkit/block_ciphers.html
+   Tryb ECB - podatny na atatki powtórzeń (słabość algorytmu można wykazać szyfrując obrazek.
+   Tryb CBC - jezeli znany IV, malo odporny na atak z wybranym tekstem jawnym, należy zmienic klucz po wysłaniu kilku(2^48 blokow) wiadomości
+   Tryb PCBC,CFB,OFB - zbliżone do CBC, można wykazać, że jest bezpieczniejszy od CBC.
+   CTR - bezpieczniejszy od powyższych, klucz nalezy zmienic po 2^64 bloków wiadomosci.
+2. Zapewne było to związane z potrzebami jakie miały spełniać te biblioteki, lub też słabość niektórych algorytmów szyfrów blokowych.
+3. Jezeli chcemy zwiekszyc ten rozmiar: http://stackoverflow.com/a/6481658
+   Wynika to pewnie z tego, że kiedyś zostały nałożone ograniczenia na długośc klucza, tak by Ameryka czuła się bezpieczna, tzn mogła czytać szyfrowane dane :P
+4. Możliwości jest dużo, raz, zapamietać, dwa zaszyfrowac na partycji bez dostepu do internetu, trzy włożyć na kartcę do wielkiego sejfu z zabezpieczeniem biometrycznym, głosowym i systemem autodestrukcji w przypadku fizycznej próby włamania.
+5. http://www.crypto-it.net/pl/teoria/tryby-szyfrow-blokowych.html
+   + linki z pierwszego pytania.
+   + cert.pl
+   + sekurak.pl
+6. B. Jeżeli zależy nam na wydajności/szybkosci, szyfrowanie symetryczne zostanie wykonane znacznie szybciej na dużej ilości danych,
+   Szyfrowanie symetrycznie duzych ilosci danych moze byc niebezpieczne, zalezy od uzytego trybu i wiedzy atakujacego.
