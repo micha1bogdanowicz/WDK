@@ -20,16 +20,12 @@ for i in range(y):
     #powmod(x, y, m) returns (x ** y) mod m.
     #f_mod dzielenie mod.
     #mul-mnozenie
-    first=powmod(g,i,p)
-    second=powmod(first,(-1),p)
-    wyn=mul(second,h)
-    wynik=f_mod(wyn,p)
+    wynik=f_mod(mul(powmod(powmod(g,i,p),(-1),p),h),p)
     di[wynik]=i
 
 #sprawdzenie po kluczach czy wystepuje
-for i in range(len(di)):
-    first=powmod(g,y,p)
-    second=powmod(first,i,p)
+for i in range(y):
+    second=powmod(powmod(g,y,p),i,p)
     if di.has_key(second):
         x=di.get(second)#jezeli tak, wez jego wartosc
         break
