@@ -1,0 +1,31 @@
+W testach użyto dwóch plików sadas.txt oraz gtavlauncher.exe(nazwa mówi sama za siebie)
+
+sadas.txt
+md5 :   5813b5a6b12c828ac658655c8d26813a
+sha256: 928f075654f11105697e21c563d9d63614ae0eee0e9669aa040dd4b71c37b293
+md5deep:5813b5a6b12c828ac658655c8d26813a
+ssdeep: I9999999999999999999999999999999999999999999N:m (rozmiar bloku=1536)(hash:hash)
+
+sadas.txt(po dopisaniu literki a na początku pliku)
+md5:    1cf83aed56a1e812a0626aa88e29120a
+sha256: 1bdb5eb073efba32acdd46223137ecd9c4a4693f091a381da0542aed15785f11
+md5deep:1cf83aed56a1e812a0626aa88e29120a
+ssdeep: 99999999999999999999999999999999999999999999E:0 (rozmiar bloku=1536)(hash:hash)
+
+gta(..).exe
+md5:    2f8e894499b5fa47b12c738b9dee74f2
+sha256: 9bdc29b251b259a3b8a511de7b22cb19b307be7f0976c2f024e5be43e9f94686
+md5deep:2f8e894499b5fa47b12c738b9dee74f2
+ssdeep: PT7Ree6yRtpbzhq46E0BUaHbu86hdK/+/Fat5RfAqqQcMVgQW:Q3Ree7cI0NShdKgFat/fAqqQcN (rozmiar bloku=24576)(hash:hash)
+
+gta(..).exe (otworzono jako doc tekstowy, dopisano a jako 2 znak)
+md5:    9b5ca9408a198bc33965d169219870a4
+sha256: effad0b9e0d2be3eee7ad9706d92bd2ba29b1724cf4aeaead814df4d83a81427
+md5deep:9b5ca9408a198bc33965d169219870a4
+ssdeep: NPT7Ree6yRtpbzhq46E0BUaHbu86hdK/+/Fat5RfAqqQcMVgQo:N3Ree7cI0NShdKgFat/fAqqQc9 (rozmiar bloku=24576)(hash:hash)
+
+Jak widac zmienienie nawet jednego bita wiadomosci powoduje wygenerowanie zupełnie różnej wartości funkcji skrótu.
+Pozwala to na weryfikację zawartości oraz integralności cyfrowego materiału.
+W przypadku ssdeep (gdzie dany plik jest najpierw dzielony na bloki,  następnie oblicza wartości funkcji skrótu dla poszczególnych fragmentów)
+stosowane jest haszowanie rozmyte. Widać tutaj, że dwa pliki są niemal identyczne (oprócz pierwszego bloku).
+Za pomocą ssdeep może również porównać te pliki '-d'
