@@ -10,7 +10,7 @@ for arg in sys.argv[1:]:
     Crypt5 = MD5.new()
     Crypt256 = SHA256.new()
 
-    file = open(arg,'r') #na windowsie dla binarek 'rb'
+    file = open(arg,'r') #na windowsie dla binarek 'rb' #FOR WINDOWS USER, TO BINARY FILE USE 'rb'
     text = file.read()
     Crypt5.update(text)
     Crypt256.update(text)
