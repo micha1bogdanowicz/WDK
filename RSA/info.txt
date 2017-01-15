@@ -1,0 +1,3 @@
+W implementacji generowany jest klucz o rozmiarze 4096.
+Oczywiście algorytm wykorzystujacy ten klucz działa powoli, jest to dwukrotność military-grade cryptography key.
+Jak to mówią, bezpieczeństwo przedewszystkim. :)
