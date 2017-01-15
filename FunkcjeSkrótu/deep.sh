@@ -3,6 +3,7 @@
 #pliki dodawane w parametrach
 # Wymagane sa zainstalowane w systemie programy md5deep oraz ssdeep
 # W Debianach: apt-get install md5deep ssdeep
+# do apt-get wymagany root | do odpalenia skryptu chmod 777 nazwa.sh
 
 apt-get install md5deep ssdeep
 clear

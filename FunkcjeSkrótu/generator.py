@@ -1,10 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# 2.7 py
 import sys
 from Crypto.Hash import MD5, SHA256
-
 
 for arg in sys.argv[1:]:
     Crypt5 = MD5.new()
@@ -19,5 +17,3 @@ for arg in sys.argv[1:]:
     print "Twoja funkcja skrotu(sha256): ",Crypt256.hexdigest()
 
     file.close()
-
-

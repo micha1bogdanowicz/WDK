@@ -29,3 +29,6 @@ Pozwala to na weryfikację zawartości oraz integralności cyfrowego materiału.
 W przypadku ssdeep (gdzie dany plik jest najpierw dzielony na bloki,  następnie oblicza wartości funkcji skrótu dla poszczególnych fragmentów)
 stosowane jest haszowanie rozmyte. Widać tutaj, że dwa pliki są niemal identyczne (oprócz pierwszego bloku).
 Za pomocą ssdeep może również porównać te pliki '-d'
+
+
+PS. hashe liczone na virtualce Kali na koncie root;
